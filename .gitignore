@@ -1,0 +1,8 @@
+﻿__pycache__/
+.pytest_cache/
+profiles/
+*.pyc
+**/.venv/
+data/raw/
+data/processed/
+outputs/

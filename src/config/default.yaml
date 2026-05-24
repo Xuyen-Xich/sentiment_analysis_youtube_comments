@@ -1,0 +1,95 @@
+project:
+  name: youtube_comments_sentiment_category
+  random_state: 42
+
+paths:
+  raw_data: data/raw/youtube-comments-sentiment.csv
+  processed_dir: data/processed
+  figures_dir: outputs/figures
+  metrics_dir: outputs/metrics
+  models_dir: outputs/models
+
+data:
+  required_columns:
+    - CommentText
+    - Sentiment
+    - CategoryID
+  optional_columns:
+    - VideoTitle
+    - Likes
+    - Replies
+    - CountryCode
+    - PublishedAt
+  id_columns:
+    - CommentID
+    - VideoID
+    - AuthorChannelID
+  sentiment_labels:
+    - Positive
+    - Neutral
+    - Negative
+  test_size: 0.15
+  validation_size: 0.15
+  sample_size:
+  min_comment_length: 1
+
+preprocessing:
+  text_columns:
+    comment: CommentText
+    title: VideoTitle
+  max_repeated_chars: 2
+  slang_map:
+    lol: laugh
+    lmao: laugh
+    omg: oh my god
+    btw: by the way
+    idk: i do not know
+    tbh: to be honest
+    imo: in my opinion
+    imho: in my humble opinion
+    u: you
+    ur: your
+    r: are
+    pls: please
+    plz: please
+    thx: thanks
+    ty: thank you
+
+features:
+  text_feature: model_text
+  numeric_features:
+    - Likes
+    - Replies
+    - comment_length
+    - word_count
+    - title_length
+    - published_hour
+    - published_dayofweek
+    - published_month
+  categorical_features:
+    - CountryCode
+
+baseline:
+  max_features: 50000
+  ngram_range:
+    - 1
+    - 2
+  min_df: 2
+  max_df: 0.95
+  class_weight: balanced
+  max_iter: 1000
+  top_k: 3
+
+transformer:
+  model_name: distilbert-base-multilingual-cased
+  max_length: 160
+  batch_size: 16
+  epochs: 2
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  max_train_samples: 5000
+  max_eval_samples: 1000
+  top_k: 3
+
+inference:
+  default_model: baseline
