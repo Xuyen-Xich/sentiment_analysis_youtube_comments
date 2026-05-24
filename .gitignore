@@ -3,6 +3,8 @@
 profiles/
 *.pyc
 **/.venv/
-data/raw/
-data/processed/
-outputs/
+data/raw/*
+data/processed/*
+outputs/figures/*
+outputs/metrics/*
+outputs/models/*
