@@ -8,6 +8,7 @@ paths:
   figures_dir: outputs/figures
   metrics_dir: outputs/metrics
   models_dir: outputs/models
+  slang_map_file: src/config/slang_map.csv
 
 data:
   required_columns:
@@ -38,22 +39,6 @@ preprocessing:
     comment: CommentText
     title: VideoTitle
   max_repeated_chars: 2
-  slang_map:
-    lol: laugh
-    lmao: laugh
-    omg: oh my god
-    btw: by the way
-    idk: i do not know
-    tbh: to be honest
-    imo: in my opinion
-    imho: in my humble opinion
-    u: you
-    ur: your
-    r: are
-    pls: please
-    plz: please
-    thx: thanks
-    ty: thank you
 
 features:
   text_feature: model_text
