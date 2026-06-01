@@ -78,13 +78,14 @@ python main.py --step inference
 ### Inference Examples
 
 ```bash
-python main.py --step inference --input new_comments.csv --output outputs/metrics/new_predictions.csv
+# default  --model "baseline"
+python main.py --step inference --input “data/raw/inference_data.csv” --output "outputs/metrics/new_predictions.csv"
 ```
 
 Inference bằng transformer sau khi đã chạy `train_transformer`:
 
 ```bash
-python main.py --step inference --model transformer --input new_comments.csv
+python main.py --step inference --model transformer --input “data/raw/inference_data.csv” --output "outputs/metrics/new_predictions.csv"
 ```
 
 File inference cần tối thiểu cột `CommentText`. Các cột `VideoTitle`, `Likes`, `Replies`, `CountryCode`, `PublishedAt` là optional.
